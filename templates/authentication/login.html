@@ -1,0 +1,80 @@
+{% extends "base_auth.html" %}
+
+{% block content %}
+
+
+<div class="row">
+   <div class="col-md-3"></div>
+   <div class="col-md-6">
+
+      <div class="card mt-5 p-5">
+        
+
+         <div class="card-body">
+            <div class="card-title py-3">
+               <h4 class="mb-2">LOGIN </h4>
+            </div>
+            <form action="{% url 'login' %}" method="post">
+               {% include 'partials/messages.html'%}
+               {% csrf_token %}
+               <div class="form-group mb-2">
+                  <input type="" name="username" placeholder="Enter login username" id="username-field" 
+                  class="form-control form-control-sm mb-4"  value="{{fieldValues.username}}" > 
+                     
+         
+                  {% comment %} <input type="email" name="email" placeholder="Enter Your Login Email Address" id="email-field"
+                     class="form-control form-control-sm mb-4"  value="{{fieldValues.email}}">
+                     <div class=" emailFeedBackArea invalid-feedback " style="display:none">
+                     </div> {% endcomment %}
+
+                     
+
+                  <input type="password" name="passwd" placeholder="Enter Your Login Password" id="passwd-field"
+                     class="form-control form-control-sm mb-4">
+         
+
+                  <small class="float-end mb-2  showPasswdToggle"><input type="checkbox" onclick="myFunction()"> <small style="position: relative; bottom:0.5vh;">Show Password</small>  </small>
+                  
+                  <div class="text-center mt-4 pt-3">
+                     <button type="submit"  class="btn btn-dark">Login</button>
+                  </div>
+
+               </div>
+            </form>
+
+
+         </div>
+
+      </div>
+   </div>
+
+   <div class="col-md-3"></div>
+</div>
+
+
+
+
+<script>
+   function myFunction() {
+  var x = document.getElementById("passwd-field");
+
+  if (x.type === "password" ) {
+    x.type = "text";
+ 
+
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+

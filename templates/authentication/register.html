@@ -1,0 +1,79 @@
+{% extends "base_auth.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="row">
+   <div class="col-md-3"></div>
+   <div class="col-md-6">
+
+      <div class="card mt-5 p-5">
+        
+
+         <div class="card-body">
+            <div class="card-title py-3">
+               <h4 class="mb-2">Register a free account</h4>
+            </div>
+            <form action="{% url 'register' %}" method="post">
+               {% include 'partials/messages.html'%}
+               {% csrf_token %}
+               <div class="form-group mb-2">
+                  <input type="" name="username" placeholder="Enter username" id="username-field"
+                     class="form-control form-control-sm mb-4"  value="{{fieldValues.username}}" >
+                     
+                  <div class="invalid_feedback invalid-feedback " style="display:none">
+                  </div>
+                  <p class="text-sm text-success usernameSuccessOutput"></p>
+
+                  
+                  <input type="email" name="email" placeholder="Enter  email address" id="email-field"
+                     class="form-control form-control-sm mb-4"  value="{{fieldValues.email}}">
+                     <div class=" emailFeedBackArea invalid-feedback " style="display:none">
+                     </div>
+
+                     
+
+                  <input type="password" name="passwd" placeholder="Create a  password" id="passwd-field"
+                     class="form-control form-control-sm mb-4">
+                  <input type="password" name="repasswd" placeholder="Confirm your  password" id="re-passwd-field"
+                     class="form-control form-control-sm mb-2">
+
+                  <small class="float-end mb-2  showPasswdToggle"><input type="checkbox" onclick="myFunction()"> <small style="position: relative; bottom:0.5vh;">Show Password</small>  </small>
+                  
+                  <div class="text-center mt-4 pt-3">
+                     <button type="submit"  class="btn btn-dark">Register</button>
+                  </div>
+
+               </div>
+            </form>
+
+
+         </div>
+
+      </div>
+   </div>
+
+   <div class="col-md-3"></div>
+</div>
+
+<script src= "{% static 'js/register.js' %}" > </script>
+
+<script>
+   function myFunction() {
+  var x = document.getElementById("passwd-field");
+  var y = document.getElementById("re-passwd-field");
+
+  if (x.type === "password" || y.type==="password") {
+    x.type = "text";
+    y.type = "text";
+
+  } else {
+    x.type = "password";
+    y.type = "password";
+  }
+}
+</script>
+
+
+
+{% endblock content %}
