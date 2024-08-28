@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 import json
 import os
 from django.conf import settings
@@ -29,10 +29,12 @@ def index(request):
         if exists:
             user_preferences.currency = currency
             user_preferences.save()
-            messages.success(request, 'Preferred Currency is updated')
+            messages.success(request, f'Preferred Currency is updated to {currency}')
+            return redirect('home')
             
         else:
             UserPreferences.objects.create(user=request.user, currency=currency)
             messages.success(request, 'Preferred Currency is Saved')
+            return redirect('home')
            
-        return render(request, 'preferences/index.html', {'currencies': currency_data, 'user_preferences': user_preferences})
+       
