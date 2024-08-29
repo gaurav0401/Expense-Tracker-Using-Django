@@ -16,9 +16,21 @@ from django.contrib.auth import login , logout , authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes , force_str 
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-
+from userpreferences.models import UserPreferences
 from .utils import account_activation_token
+
+import threading
 # Create your views here.
+
+
+
+
+
+def send_email(subject,message,from_, receipt):
+    send_mail(subject=subject, message=message, from_email=from_ , recipient_list=receipt)
+
+
+
 class UsernameValidation(View):
     def post(self, request):
         data = json.loads(request.body)
@@ -84,6 +96,9 @@ class RegistrationView(View):
                     recipient_list= [email]
                          )
                     
+                    # threading.Thread(send_email("Account Activation Link Mail", msg , settings.EMAIL_HOST_USER,[email])).start()
+
+                    
                     messages.success(request ,"User has been registered successfully.Activation mail has been sent to your email address.")
                     return render(request, 'authentication/register.html')
             else:
@@ -128,7 +143,7 @@ class LoginView(View):
 
         userid=request.POST['username']
         pwd=request.POST['passwd']
-        print(pwd)
+       
 
         if userid and pwd:
             usr=authenticate(username=userid , password=pwd)
@@ -136,6 +151,9 @@ class LoginView(View):
                 if usr.is_active:
                     login(request,usr)
                     messages.success(request,f"Welcome back , {usr.get_username()}")
+                    exists = UserPreferences.objects.filter(user=usr).exists()
+                    if not exists:
+                        return redirect("preferences")
                     return redirect('home')
                 else:
                     messages.error(request, "This account is not activated . Please check your mail.")
@@ -151,7 +169,6 @@ def LogoutView(request):
     logout(request)
     messages.success(request, "You have been logged out succesfully")
     return redirect('login')
-
 
 
 
@@ -180,12 +197,16 @@ class ResetPassword(View):
             link=reverse('reset-pass',kwargs={'uidb64':uidb64 , 'token':PasswordResetTokenGenerator().make_token(user[0])})
             reset_url = 'http://'+domain+link
             msg=f"Hi {user[0].username},\nPlease rest your password using given link\n{reset_url}."
-            message = send_mail(
-            subject = "Account Confirmation Mail", 
-            message = msg,
-            from_email = settings.EMAIL_HOST_USER  ,
-            recipient_list= [email]
-            )
+            # message = send_mail(
+            # subject = "Account Confirmation Mail", 
+            # message = msg,
+            # from_email = settings.EMAIL_HOST_USER  ,
+            # recipient_list= [email]
+            # )
+
+            threading.Thread(send_email("Password Reset Mail", msg , settings.EMAIL_HOST_USER,[email])).start()
+
+
                         
             messages.success(request ,"We have sent password reset link to your email.")
             return render(request , 'authentication/reset-pass.html')
@@ -233,7 +254,7 @@ class CompletePasswordReset(View):
         if pass1 != pass2:
             messages.error(request, "Password does not matched!")
             return render(request, 'authentication/set-new-pass.html', context)
-        if len(pass1) <6:
+        if len(pass1) <8:
             messages.error(request, "Password is too short")
             return render(request, 'authentication/set-new-pass.html', context)
         try:

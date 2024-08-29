@@ -27,19 +27,30 @@
       <div class="col-md-2">
         <a href="{% url 'add-expense'%}" class="btn btn-primary">Add Expense</a>
       </div>
+      <br><br>
     </div>
   
    
     <div class="container">
-        {% include 'partials/messages.html' %}
-        
-        
-        {% if expenses.count %}
-    
+        {% include 'partials/messages.html' %} {% if expenses.count %}
+     
+
+
+
+
         <div class="row">
-          <div class="col-md-8"></div>
+          <div class="col-md-8"> 
+            
+            <br><br><br>
+            <a class="btn btn-secondary"  href="{% url 'export-csv' %}">Export as CSV</a>
+            <a  class="btn btn-secondary" href="{% url 'export-pdf' %}">Export as PDF</a>
+            <a  class="btn btn-secondary" href="{% url 'export-excel' %}">Export as Excel </a>
+            <br><br><br>
+          </div>
+          <br><br>
           <div class="col-md-4">
-    
+             
+           <br><br>
             <div class="form-group">
               <input type="text" class="form-control" id="searchField" placeholder="Search">
             </div>
