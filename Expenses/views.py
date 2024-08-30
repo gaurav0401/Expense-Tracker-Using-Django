@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from django.http import HttpResponse 
+from django.http import HttpResponse  , FileResponse
 from django.contrib.auth.decorators import login_required
 from .models import Category , Expense
 from django.contrib import messages
@@ -9,6 +9,10 @@ import json
 import datetime
 import csv
 from django.http import JsonResponse
+from django.db.models import Sum
+
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 # Create your views here.
 
 
@@ -151,8 +155,6 @@ def stats_view(request):
     return render(request, 'expenses/stats.html')
 
 
-def Export_PDF(request):
-    pass
 
 def Export_CSV(request):
     response=HttpResponse(content_type='text/csv')
@@ -194,3 +196,30 @@ def Export_EXCEL(request):
 
     wb.save(response)
     return response
+
+
+
+
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = HttpResponse(content_type='application/pdf' )
+    pdf = pisa.CreatePDF(html, dest=result)
+    if not pdf.err:
+        return result
+    return HttpResponse('We had some errors while generating the PDF', status=400)
+
+def Export_PDF(request):
+   
+    expenses=Expense.objects.filter(owner=request.user)
+    total=expenses.aggregate(Sum('amount'))
+    # Create the context to pass to the template
+    context = {
+        'expenses': expenses,
+        'total': total['amount__sum']
+        
+    }
+
+    # Render the PDF
+    return render_to_pdf('expenses\expense-pdf.html', context)

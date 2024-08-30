@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+
+    <style>
+
+        .table1{
+            border: 2px;
+        }
+
+
+        body{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Expense Summary</h2>
+    <table class="table1">
+        <thead>
+            <tr>
+                <td><b>Amount</b></td>
+                <td><b>Description</b></td>
+                <td><b>Category</b></td>
+                <td><b>Date</b></td>
+            </tr>
+        </thead>
+        <tbody>
+             {% for expense in expenses  %}
+             
+             <tr>
+
+                 <td>{{expense.amount}}</td>
+                 <td>{{expense.description}}</td>
+                 <td>{{expense.category}}</td>
+                 <td>{{expense.date}}</td>
+
+             </tr>
+             
+             {% endfor %}
+           
+
+           
+        </tbody>
+    </table>
+    <p>Total Expenses: {{total}}</p>
+</body>
+</html>
