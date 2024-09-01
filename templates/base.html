@@ -9,8 +9,12 @@
     <title>TrackMyCash | {% block title %}{% endblock title %}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    
 
     <!-- Bootstrap core CSS -->
 <link href= {% static 'css/bootstrap.min.css'%} rel="stylesheet" >
@@ -27,33 +31,37 @@
 
 
 
-
+  {% block head %}{% endblock head %}
     
     <!-- Custom styles for this template -->
     <link href= {% static 'css/dashboard.css'%} rel="stylesheet">
   </head>
-  <body>
-    
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow mb-5">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">ExpenseTracker</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <body style="background-color: rgb(255, 252, 240);">
+
+
+<header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow mb-5" style="background-color: rgb(184, 166, 142); box-shadow: 5px 10px 5px #e2e2e2; ">
+  <a style="background-color: rgb(87, 78, 65);  " class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/"><i class="fa-solid fa-money-bill"></i> TrackMyCash</a>
+  <button  class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
+    
   </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
+
+  <div class="navbar-nav" >
+    
     <div class="nav-item text-nowrap">
+      
       <ul
-      class="navbar-nav px-3"
+      class="navbar-nav px-3 "
       style="display: flex; flex-direction: row; align-items: center;"
     >
      
 
-      <li class="nav-item text-nowrap mt-3 ml-2">
+      <li class="nav-item text-nowrap mt-3 ml-2 mr-5">
 
         {% if user.is_authenticated %}
         <li class="nav-item text-nowrap">
-          <span class="nav-link" >
-            ({{request.user}})
+          <span class="nav-link" style="color: white;">
+            (<i style="font-size: 12px;" class="fa-solid fa-user-ninja"></i> {{request.user}})
           </span>
         </li>
         <a href="{% url  'logout' %}"  style="text-decoration: none;">
@@ -62,16 +70,20 @@
             class="text text-capitalize"
             type="submit"
             value="Sign out"
+            style="background-color: rgb(107, 82, 51); border-radius: 5px; border-color:rgb(107, 82, 51); color: white;"
+            
           />
         </a>
   
         {% else %}
+        
         <a href="{% url  'register' %}"  style="text-decoration: none; position:relative; bottom: 1vh;" >
          
           <input
             class="text text-capitalize"
             type="submit"
             value="Register"
+            style="background-color: rgb(107, 82, 51); border-radius: 5px; border-color:rgb(107, 82, 51); color: white;"
           />
         </a>
 
@@ -81,6 +93,7 @@
             class="text text-capitalize"
             type="submit"
             value="Login"
+            style="background-color: rgb(107, 82, 51); border-radius: 5px; border-color:rgb(107, 82, 51); color: white;"
           />
         </a>
         
@@ -119,3 +132,5 @@
       </script><script src={%static 'js/main.js'%}></script>
   </body>
 </html>
+
+

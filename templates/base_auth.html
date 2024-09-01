@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Expense Tracker | {% block title %}{% endblock title %}</title>
+    <title>TrackMyCash | {% block title %}{% endblock title %}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
@@ -33,16 +33,17 @@
     <!-- Custom styles for this template -->
     <link href= {% static 'css/dashboard.css'%} rel="stylesheet">
   </head>
-  <body>
+  <body style="background-color: rgb(255, 252, 240);"> 
     
 
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">ExpenseTracker</a>
+    <header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color: rgb(184, 166, 142); box-shadow: 5px 10px 5px #e2e2e2; ">
+      <a style="background-color: rgb(87, 78, 65);" class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="login"><i class="fa-solid fa-money-bill"></i> TrackMyCash</a>
       <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-      <div class="navbar-nav">
+
+    
+       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
           <ul
           class="navbar-nav px-3"
@@ -52,48 +53,23 @@
     
           <li class="nav-item text-nowrap mt-3 ml-2">
     
-            {% if user.is_authenticated %}
-            <li class="nav-item text-nowrap">
-              <span class="nav-link" >
-                ({{request.user}})
-              </span>
-            </li>
-            <a href="{% url  'logout' %}"  style="text-decoration: none;">
+            <a href="/admin"   style="text-decoration: none; position:relative; bottom: 1vh;" >
              
               <input
                 class="text text-capitalize"
                 type="submit"
-                value="Sign out"
+                value= "Admin"
+                style="background-color: rgb(107, 82, 51); border-radius: 5px; border-color:rgb(107, 82, 51); color: white;"
               />
             </a>
       
-            {% else %}
-            <a href="{% url  'register' %}"  style="text-decoration: none; position:relative; bottom: 1vh;" >
-             
-              <input
-                class="text text-capitalize"
-                type="submit"
-                value="Register"
-              />
-            </a>
-    
-            <a href="{% url  'login' %}"  style="text-decoration: none; position:relative; bottom: 1vh;" >
-             
-              <input
-                class="text text-capitalize"
-                type="submit"
-                value="Login"
-              />
-            </a>
-            
-    
-            {% endif %}
+           
           </li>
         </ul>
         
     
     
-        </div>
+        </div> 
       </div>
     </header>
 

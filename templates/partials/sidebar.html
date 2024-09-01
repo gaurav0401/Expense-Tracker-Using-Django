@@ -5,20 +5,20 @@
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link active" aria-current="page" href="#" style="color: black;" >
             <span data-feather="home"></span>
             Dashboard
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home'%}">
-            <span data-feather="file"></span>
+            <i class="fa-solid fa-comments-dollar"></i>
             Expenses
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="income">
-            <span data-feather="shopping-cart"></span>
+            <i class="fa-solid fa-comments-dollar"></i>
            Income
           </a>
         </li>
@@ -27,6 +27,7 @@
       </ul>
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        
        <span>Summary </span>
         <a class="link-secondary" href="#" aria-label="Add a new report">
          
@@ -35,16 +36,11 @@
       <ul class="nav flex-column mb-2">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'stats' %}">
-            <span data-feather="file-text"></span>
+            <i class="fa-solid fa-clipboard-list"></i>
             Expense Summary
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file-text"></span>
-          Income Summary
-          </a>
-        </li>
+       
        
       </ul>
 
@@ -63,14 +59,14 @@
        <ul class="nav flex-column mb-2">
          <li class="nav-item">
            <a class="nav-link" href="{% url 'preferences'%}">
-             <span data-feather="file-text"></span>
-             General 
+            <i class="fa-regular fa-square-check"></i>
+             Preferences
            </a>
          </li>
          <li class="nav-item">
-           <a class="nav-link" href="#">
-             <span data-feather="file-text"></span>
-           Account
+           <a class="nav-link" href="admin">
+             
+            <i class="fa-solid fa-user"></i>  Admin
            </a>
          </li>
         

@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block title %}Edit Income{% endblock title %}
+{% block content %}
 
 <div class="container mt-4">
   <div class="row">
@@ -15,7 +17,7 @@
       </nav>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 mb-4">
       <a
         href="{% url 'income-delete' income.id %}"
         class="btn btn-danger btn-sm"
@@ -24,7 +26,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" style="background-color: antiquewhite; box-shadow: 5px 10px 5px #e2e2e2;">
     <div class="card-body">
       <form action="{% url 'income-edit' income.id %}" method="post">
         {% include 'partials/messages.html'%} {% csrf_token %}
@@ -35,6 +37,7 @@
             class="form-control form-control-sm"
             name="amount"
             value="{{values.amount}}"
+            style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
           />
         </div>
         <div class="form-group">
@@ -44,12 +47,13 @@
             class="form-control form-control-sm"
             name="description"
             value="{{values.description}}"
+            style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
           />
         </div>
         <div class="form-group">
           <label for="">Source</label>
-          <select class="form-control" name="source">
-            <option selected name="source" value="{{values.source}}"
+          <select class="form-control" name="source"  style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;">
+            <option selected name="source" value="{{values.source}}" 
               >{{values.source}}</option
             >
             {% for source in sources%}
@@ -67,6 +71,7 @@
             value="{{values.date | date:'Y-m-d' }}"
             class="form-control form-control-sm"
             name="income_date"
+            style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
           />
         </div>
 
@@ -74,6 +79,7 @@
           type="submit"
           value="Save"
           class="btn btn-primary btn-primary-sm"
+          style="background-color: rgb(85, 71, 54); border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
         />
       </form>
     </div>

@@ -24,8 +24,8 @@
         </nav>
       </div>
   
-      <div class="col-md-2">
-        <a href="{% url 'add-expense'%}" class="btn btn-primary">Add Expense</a>
+      <div class="col-md-2 mt-5 mb-5"  >
+        <a href="{% url 'add-expense'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);"  >Add Expense</a>
       </div>
       <br><br>
     </div>
@@ -39,37 +39,39 @@
 
 
         <div class="row">
-          <div class="col-md-8"> 
+          <div class="col-md-8 "  > 
             
-            <br><br><br>
-            <a class="btn btn-secondary"  href="{% url 'export-csv' %}">Export as CSV</a>
-            <a  class="btn btn-secondary" href="{% url 'export-pdf' %}">Export as PDF</a>
-            <a  class="btn btn-secondary" href="{% url 'export-excel' %}">Export as Excel </a>
-            <br><br><br>
+       
+            <a class="btn btn-secondary mt-2"  href="{% url 'export-csv' %}"  style="background-color: rgb(117, 22, 136); color: whitesmoke;" >Export as CSV</a>
+            <a  class="btn btn-secondary mt-2" href="{% url 'export-pdf' %}" style="background-color: rgb(17, 89, 184); color: whitesmoke;" >Export as PDF</a>
+            <a  class="btn btn-secondary mt-2" href="{% url 'export-excel' %}" style="background-color: rgb(83, 128, 79); color: whitesmoke;" >Export as Excel sheet </a>
+          
           </div>
           <br><br>
           <div class="col-md-4">
              
-           <br><br>
+           <br><br> <br><br><br>
             <div class="form-group">
-              <input type="text" class="form-control" id="searchField" placeholder="Search">
+              <input type="text" class="form-control" id="searchField" placeholder="Search" style=" border: 0.5px solid rgb(153, 153, 153); border-radius: 2px;">
             </div>
           </div>
         </div>
-    <div class="app-table">
-    
-      <table class="table table-stripped table-hover">
-        <thead>
+        
+    <div class="table-responsive mt-5">
+      <caption><h4>Recent Expenses Record</h4></caption>
+      <table class="table table-hover  table-sm  table-bordered table-success">
+       
+        <thead class="thead-dark" >
           <tr>
-            <th>Amount ({{currency}})</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th></th>
+            <th >Amount ({{currency}})</th>
+            <th >Category</th>
+            <th >Description</th>
+            <th >Date</th>
+            <th ></th>
           </tr>
         </thead>
     
-        <tbody>
+        <tbody class="">
           {% for expense in page_obj%}
           <tr>
             <td>{{expense.amount}}</td>
@@ -80,7 +82,7 @@
             <td>
               <a
                 href="{% url 'expense-edit' expense.id  %}"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm" style="background-color: rgb(218, 174, 121);" 
                 >Edit</a
               >
             </td>
@@ -93,10 +95,9 @@
     </div>
 
    
+
     
-        <p class="no-results" style="display: none;">No results </p>
-    
-        <div class="table-output">
+        <!-- <div class="table-output">
 
 
           <table class="table table-stripped table-hover">
@@ -115,29 +116,29 @@
     
             </tbody>
           </table>
-        </div>
+        </div> -->
     
     
         <div class="pagination-container">
-        <div class="">
+        <div class="" style="font-weight: 800;">
           Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
         </div>
-        <ul class="pagination align-right float-right mr-auto">
+        <ul  class="pagination align-right float-right mr-auto">
           {% if page_obj.has_previous %}
-          <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
-          <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+          <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a  style="background-color:  rgb(85, 71, 54); color:aliceblue;"   class="page-link" href="?page=1">&laquo; 1</a></li>
+          <li class="page-item"> <a  style="background-color: rgb(85, 71, 54) ;  color:aliceblue;" class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
           {% endif %}
     
           {% if page_obj.has_next %}
-          <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-          <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+          <li class="page-item"> <a  style="background-color: rgb(85, 71, 54); color:aliceblue;"  class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+          <li class="page-item"> <a  style="background-color: rgb(85, 71, 54) ; color:aliceblue; " class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
           {% endif %}
     
     
           </ul>
 
         {% else %}
-        <p class="no-results" style="display: block;">No results  found</p>
+        <p class="no-results" style="display: block; ;" >No results  found</p>
         {% endif %}
       </div>
     </div>

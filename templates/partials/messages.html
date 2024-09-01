@@ -1,7 +1,7 @@
 {% if messages %}
-<div class="messages">
+<div class="messages" style="margin-top: 18px;">
     {% for message in messages %}
-    <div{% if message.tags %} class="alert alert-sm alert-{{ message.tags }}"{% endif %}  >{{ message }}</div>
+    <div {% if message.tags %} class="alert alert-sm alert-{{ message.tags }}"{% endif %}  >{{ message }}</div>
     {% endfor %}
 </div>
 {% endif %}

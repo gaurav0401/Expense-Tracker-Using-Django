@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+
+{% block title %}Add Income{% endblock title %}
+
+{% block content %}
 
 <div class="container mt-4">
   <nav aria-label="breadcrumb">
@@ -10,7 +14,7 @@
     </ol>
   </nav>
 
-  <div class="card">
+  <div class="card" style="background-color: antiquewhite; box-shadow: 5px 10px 5px #e2e2e2;">
     <div class="card-body">
       <form action="{% url 'add-income' %}" method="post">
         {% include 'partials/messages.html'%} {% csrf_token %}
@@ -21,6 +25,7 @@
             class="form-control form-control-sm"
             name="amount"
             value="{{values.amount}}"
+             style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
           />
         </div>
         <div class="form-group">
@@ -30,11 +35,12 @@
             class="form-control form-control-sm"
             name="description"
             value="{{values.description}}"
+             style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
           />
         </div>
         <div class="form-group">
           <label for="">Sources</label>
-          <select class="form-control" name="source">
+          <select class="form-control" name="source"  style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;">
             {% for source in sources%}
             <option name="source" value="{{source.name}}"
               >{{source.name}}</option
@@ -48,6 +54,7 @@
             type="date"
             class="form-control form-control-sm"
             name="income_date"
+             style="margin-bottom: 2vh; border: 0.5px solid rgb(233, 233, 233); border-radius: 5px;"
           />
         </div>
 
@@ -55,6 +62,7 @@
           type="submit"
           value="Submit"
           class="btn btn-primary btn-primary-sm"
+          style="background-color: rgb(85, 71, 54);"
         />
       </form>
     </div>
