@@ -25,7 +25,7 @@
       </div>
   
       <div class="col-md-2 mt-5 mb-5"  >
-        <a href="{% url 'add-expense'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);"  >Add Expense</a>
+        <a href="{% url 'add-expense'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);color:white;"  >Add Expense</a>
       </div>
       <br><br>
     </div>
@@ -52,12 +52,12 @@
              
            <br><br> <br><br><br>
             <div class="form-group">
-              <input type="text" class="form-control" id="searchField" placeholder="Search" style=" border: 0.5px solid rgb(153, 153, 153); border-radius: 2px;">
+              <input type="text" class="form-control" id="searchField" placeholder="Search" style="  border-radius: 5px;">
             </div>
           </div>
         </div>
         
-    <div class="table-responsive mt-5">
+    <div class="app-table table-responsive mt-5" >
       <caption><h4>Recent Expenses Record</h4></caption>
       <table class="table table-hover  table-sm  table-bordered table-warning">
        
@@ -82,7 +82,7 @@
             <td>
               <a
                 href="{% url 'expense-edit' expense.id  %}"
-                class="btn btn-secondary btn-sm" style="background-color: rgb(218, 174, 121);" 
+                class="btn btn-secondary btn-sm mb-3" style="background-color: rgb(218, 174, 121);color:whitesmoke;" 
                 >Edit</a
               >
             </td>
@@ -95,12 +95,13 @@
     </div>
 
    
-
+    <p class="no-results" style="display: none;">No results </p>
     
-        <!-- <div class="table-output">
-
-
-          <table class="table table-stripped table-hover">
+        <div class="table-output mt-5">
+       
+          <caption class="mt-2"><h4>Search Results</h4></caption>
+          <table class="table table-stripped table-hover table-warning">
+            
             <thead>
               <tr>
                 <th>Amount ({{currency}})</th>
@@ -116,14 +117,14 @@
     
             </tbody>
           </table>
-        </div> -->
+        </div>
     
     
         <div class="pagination-container">
         <div class="" style="font-weight: 800;">
           Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
         </div>
-        <ul  class="pagination align-right float-right mr-auto">
+        <ul  class="pagination align-right float-right mr-auto" style="background-color: rgb(255, 252, 240); box-shadow: none;" >
           {% if page_obj.has_previous %}
           <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a  style="background-color:  rgb(85, 71, 54); color:aliceblue;"   class="page-link" href="?page=1">&laquo; 1</a></li>
           <li class="page-item"> <a  style="background-color: rgb(85, 71, 54) ;  color:aliceblue;" class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>

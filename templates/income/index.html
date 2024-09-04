@@ -20,11 +20,12 @@
     </div>
 
     <div class="col-md-2 mt-5">
-      <a href="{% url 'add-income'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);" >Add Income</a>
+      <a href="{% url 'add-income'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);color:white;">Add
+        Income</a>
     </div>
   </div>
 
-   <div class="container mt-3" >
+  <div class="container mt-3">
     {% include 'partials/messages.html' %}
 
     {% if income.count %}
@@ -33,55 +34,57 @@
       <div class="col-md-8"></div>
       <div class="col-md-4">
 
-        <div class="form-group mt-4" >
-          <input type="text" class="form-control" id="searchField" placeholder="Search" style=" border: 0.5px solid rgb(153, 153, 153); border-radius: 2px;">
+        <div class="form-group mt-4">
+          <input type="text" class="form-control" id="searchField" placeholder="Search" style="  border-radius: 5px;">
         </div>
       </div>
-     </div>
-<div class="table-responsive mt-5 w-auto">
-  <caption><h4 >Recent Income history </h4></caption>
-  <table class="table table-hover  table-sm  table-bordered table-warning">
-    <thead>
-      <tr>
-        <th>Amount ({{currency}})</th>
-        <th>Source</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for income in page_obj%}
-      <tr>
-        <td>{{income.amount}}</td>
-        <td>{{income.source}}</td>
-        <td>{{income.description}}</td>
-        <td>{{income.date}}</td>
-
-        <td>
-          <a
-            href="{% url 'income-edit' income.id  %}"
-            class="btn btn-secondary btn-sm"  style="background-color: rgb(218, 174, 121);" 
-            >Edit</a
-          >
-        </td>
-      </tr>
-
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-
-<p class="no-results" style="display: none;">No results </p>
-    <div class="table-output">
-
-
-      <table class="table table-stripped table-hover">
+    </div>
+    <div class="app-table  table-responsive mt-5 w-auto">
+      <caption>
+        <h4>Recent Income history </h4>
+      </caption>
+      <table class="table table-hover  table-sm  table-bordered table-warning">
         <thead>
           <tr>
             <th>Amount ({{currency}})</th>
             <th>Source</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for income in page_obj%}
+          <tr>
+            <td>{{income.amount}}</td>
+            <td>{{income.source}}</td>
+            <td>{{income.description}}</td>
+            <td>{{income.date}}</td>
+
+            <td>
+              <a href="{% url 'income-edit' income.id  %}" class="btn btn-secondary btn-sm mb-2"
+                style="background-color: rgb(218, 174, 121);color:whitesmoke;">Edit</a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+
+    <p class="no-results" style="display: none;">No results </p>
+    
+    <div class="table-output">
+   
+      <caption><h4>Search Results</h4></caption>
+      <table class="table table-stripped table-hover table-warning">
+        
+        <thead>
+          <tr>
+            <th>Amount ({{currency}})</th>
+            <th>Category</th>
             <th>Description</th>
             <th>Date</th>
             <th></th>
@@ -97,27 +100,31 @@
 
 
 
-
     <div class="pagination-container">
-    <div class="" style="font-weight: 800;">
-      Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
-    </div>
-    <ul class="pagination align-right float-right mr-auto">
-      {% if page_obj.has_previous %}
-      <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a style="background-color: rgb(85, 71, 54); color:aliceblue;"class="page-link" href="?page=1">&laquo; 1</a></li>
-      <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-      {% endif %}
+      <div class="" style="font-weight: 800;">
+        Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
+      </div>
+      <ul class="pagination align-right float-right mr-auto" style="background-color: rgb(255, 252, 240); box-shadow: none;">
+        {% if page_obj.has_previous %}
+        <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a
+            style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link" href="?page=1">&laquo; 1</a>
+        </li>
+        <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link"
+            href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
 
-      {% if page_obj.has_next %}
-      <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-      <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;"class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
-      {% endif %}
+        {% if page_obj.has_next %}
+        <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link"
+            href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link"
+            href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+        {% endif %}
 
 
       </ul>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
-</div>
 </div>
 
 
