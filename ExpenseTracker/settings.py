@@ -143,3 +143,14 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'mikesmith.t2134@gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'sibjynxcoevvsncl'
+
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
