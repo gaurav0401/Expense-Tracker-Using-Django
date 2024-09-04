@@ -75,6 +75,9 @@ class RegistrationView(View):
                 if len(passwd)< 8 and passwd !="":
                     messages.error(request ,"Mininum length of password must be 8")
                     return render(request, 'authentication/register.html' , context)
+                elif len(username)< 10 :
+                    messages.error(request ,"Username must be 8 characters long")
+                    return render(request, 'authentication/register.html' , context)
                 else:
                     if passwd != repasswd:
                         messages.error(request ,"re-typed password doesn't matched with choosed password")
