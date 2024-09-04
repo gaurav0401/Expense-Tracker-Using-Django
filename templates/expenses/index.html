@@ -25,41 +25,26 @@
       </div>
   
      
-      <br><br>
     </div>
-  
+    
+    <div class="col-md-2 mt-5 mb-4"  >
+      <a href="{% url 'add-expense'%}" class="btn btn-md btn-primary" style="background-color: rgb(85, 71, 54);color:white;"  > <i class="fa-solid fa-plus"></i> Add Expense </a>
+    </div>
+    <br><br><br>
    
     <div class="container">
         {% include 'partials/messages.html' %} {% if expenses.count %}
-     
-
-
-
-
         <div class="row">
-          <div class="col-md-8 "  > 
-            <br> <br> <br>
-       
-            <a class="btn btn-secondary mt-2"  href="{% url 'export-csv' %}"  style="background-color: rgb(117, 22, 136); color: whitesmoke;" >Export as CSV</a>
-            <a  class="btn btn-secondary mt-2" href="{% url 'export-pdf' %}" style="background-color: rgb(17, 89, 184); color: whitesmoke;" >Export as PDF</a>
-            <a  class="btn btn-secondary mt-2" href="{% url 'export-excel' %}" style="background-color: rgb(83, 128, 79); color: whitesmoke;" >Export as Excel sheet </a>
-          
-          </div>
-         
+          <div class="col-md-8"></div>
           <div class="col-md-4">
-             
-           <br><br><br><br><br>
-            <div class="form-group mt-5">
+    
+            <div class="form-group mt-4">
               <input type="text" class="form-control" id="searchField" placeholder="Search" style="  border-radius: 5px;">
             </div>
           </div>
         </div>
-        
-
-        <div class="col-md-2 mt-5 mb-4"  >
-          <a href="{% url 'add-expense'%}" class="btn btn-md btn-primary" style="background-color: rgb(85, 71, 54);color:white;"  > <i class="fa-solid fa-plus"></i> Add Expense </a>
-        </div>
-        <caption><h4>Recent Expenses Record</h4></caption>
+       
+        <caption><h4>Expenses Record</h4></caption>
     <div class="app-table table-responsive mt-2" >
       
       <table class="table table-hover  bordered  table-warning "  >
@@ -127,7 +112,7 @@
         <div class="" style="font-weight: 800;">
           Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
         </div>
-        <ul  class="pagination align-right float-right mr-auto" style="background-color: rgb(255, 252, 240); box-shadow: none;" >
+        <ul  class="pagination align-right float-right mr-auto mt-3" style="background-color: rgb(255, 252, 240); box-shadow: none;" >
           {% if page_obj.has_previous %}
           <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a  style="background-color:  rgb(85, 71, 54); color:aliceblue;"   class="page-link" href="?page=1">&laquo; 1</a></li>
           <li class="page-item"> <a  style="background-color: rgb(85, 71, 54) ;  color:aliceblue;" class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
@@ -146,10 +131,21 @@
         {% endif %}
       </div>
     </div>
+    {% if expenses.count %}
+    <div class="row">
+      <div class="col-md-8 "  > 
+        <br> <br> <br>
+   
+        <a class="btn btn-secondary mt-2"  href="{% url 'export-csv' %}"  style="background-color: rgb(117, 22, 136); color: whitesmoke;" >Export as CSV</a>
+        <a  class="btn btn-secondary mt-2" href="{% url 'export-pdf' %}" style="background-color: rgb(17, 89, 184); color: whitesmoke;" >Export as PDF</a>
+        <a  class="btn btn-secondary mt-2" href="{% url 'export-excel' %}" style="background-color: rgb(83, 128, 79); color: whitesmoke;" >Export as Excel sheet </a>
+      
+      </div>
     </div>
+    {% endif %}
 
 
-
+   
     
     <script src="{% static 'js/searchExpenses.js' %}"></script>
 {% endblock content %}

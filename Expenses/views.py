@@ -33,7 +33,7 @@ def search_expenses(request):
 def index(request):
     currency=UserPreferences.objects.get(user=request.user).currency
     expense=Expense.objects.filter(owner=request.user)
-    paginator=Paginator(expense , 2)
+    paginator=Paginator(expense , 8)
     page_number=request.GET.get('page')
     page_obj=Paginator.get_page(paginator,page_number)
 
@@ -199,15 +199,21 @@ def Export_EXCEL(request):
 
 
 
-
+import io
 
 def render_to_pdf(template_src, context_dict={}):
     template = get_template(template_src)
     html = template.render(context_dict)
     result = HttpResponse(content_type='application/pdf' )
-    pdf = pisa.CreatePDF(html, dest=result)
+    # pdf = pisa.CreatePDF(html, dest=result)
+    cur=datetime.datetime.now()
+ 
+    with open("ExpenseReport.pdf", 'wb') as output:
+        pdf = pisa.CreatePDF(io.StringIO(html), dest=output)
+    
     if not pdf.err:
-        return result
+    
+        return redirect('/')
     return HttpResponse('We had some errors while generating the PDF', status=400)
 
 def Export_PDF(request):

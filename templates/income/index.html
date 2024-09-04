@@ -21,7 +21,10 @@
 
   
   </div>
-
+  <div class="col-md-2 mt-5 ">
+    <a href="{% url 'add-income'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);color:white;"><i class="fa-solid fa-plus"></i> Add
+      Income</a>
+  </div> <br><br>
   <div class="container mt-3">
     {% include 'partials/messages.html' %}
 
@@ -37,12 +40,9 @@
       </div>
     </div>
 
-    <div class="col-md-2 mt-5 ">
-      <a href="{% url 'add-income'%}" class="btn btn-primary" style="background-color: rgb(85, 71, 54);color:white;"><i class="fa-solid fa-plus"></i> Add
-        Income</a>
-    </div> <br><br>
+    
     <caption>
-      <h4>Recent Income history </h4>
+      <h4> Income History </h4>
     </caption>
     <div class="app-table  table-responsive mt-2 w-auto">
      
@@ -79,7 +79,7 @@
 
     <p class="no-results" style="display: none;">No results </p>
     
-    <div class="table-output">
+    <div class="table-output mt-5">
    
       <caption><h4>Search Results</h4></caption>
       <table class="table table-stripped table-hover table-warning">
@@ -107,7 +107,7 @@
       <div class="" style="font-weight: 800;">
         Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
       </div>
-      <ul class="pagination align-right float-right mr-auto" style="background-color: rgb(255, 252, 240); box-shadow: none;">
+      <ul class="pagination align-right float-right mr-auto  mt-3" style="background-color: rgb(255, 252, 240); box-shadow: none;">
         {% if page_obj.has_previous %}
         <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a
             style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link" href="?page=1">&laquo; 1</a>
@@ -122,9 +122,9 @@
         <li class="page-item"> <a style="background-color: rgb(85, 71, 54); color:aliceblue;" class="page-link"
             href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
         {% endif %}
-
-
       </ul>
+      {% else %}
+        <p class="no-results" style="display: block; ;" >No results  found</p>
       {% endif %}
     </div>
   </div>
