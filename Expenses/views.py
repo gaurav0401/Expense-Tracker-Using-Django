@@ -205,15 +205,15 @@ def render_to_pdf(template_src, context_dict={}):
     template = get_template(template_src)
     html = template.render(context_dict)
     result = HttpResponse(content_type='application/pdf' )
-    # pdf = pisa.CreatePDF(html, dest=result)
+    pdf = pisa.CreatePDF(html, dest=result)
     cur=datetime.datetime.now()
  
-    with open("ExpenseReport.pdf", 'wb') as output:
-        pdf = pisa.CreatePDF(io.StringIO(html), dest=output)
+   
+    # pdf = pisa.CreatePDF(io.StringIO(html), dest=result)   
     
     if not pdf.err:
-    
-        return redirect('/')
+        
+        return result
     return HttpResponse('We had some errors while generating the PDF', status=400)
 
 def Export_PDF(request):
